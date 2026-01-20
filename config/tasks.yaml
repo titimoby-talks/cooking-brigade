@@ -1,0 +1,6 @@
+chef_task:
+  description: >
+    Analyze {user_query} and create menu
+  expected_output: >
+    Updated state with menu_data
+  agent: chef_agent
