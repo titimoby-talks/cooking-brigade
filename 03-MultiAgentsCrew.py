@@ -2,6 +2,9 @@ import json
 from codecs import backslashreplace_errors
 
 from crewai import Agent, Task, Crew
+from crewai.tools import tool
+
+from database.RestaurantDB import RestaurantDB
 
 # Agents
 chef = Agent(
@@ -14,13 +17,22 @@ chef = Agent(
     verbose=True,
 )
 
+@tool
+def query_wines_tool():
+    """Query the wines table from the RestaurantDB."""
+    db = RestaurantDB()
+    records = db.query_wines()
+    return [record.string_representation() for record in records]
+
 sommelier = Agent(
     role="Sommelier",
     goal="Trouver un vin qui s'accorde avec un menu.",
     backstory="""Vous êtes un sommelier possédant une expertise de classe mondiale en matière d'accords mets-vins.
         Vous avez une connaissance approfondie des cépages, des terroirs et des millésimes. 
         Vous savez comment équilibrer l'acidité, les tanins et la douceur avec les saveurs des aliments.
+        Vous utilisez en priorité les vins présents dans la database du restaurant.
     """,
+    tool=query_wines_tool,
     verbose=True,
 )
 
@@ -36,7 +48,7 @@ create_menu_task = Task(
 )
 
 find_wine_task = Task(
-    description="Trouve un vin qui accompagne à merveille le menu.",
+    description="Trouve un vin dans la base de donnée du restaurant qui accompagne à merveille le menu. Favorise un choix d'un vin issu du résultat du tool query_wines_tool.",
     expected_output="""Une description en 1 phrase du vin trouvé et son terroir.
     """,
     agent=sommelier,

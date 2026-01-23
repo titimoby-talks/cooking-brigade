@@ -21,5 +21,5 @@ class Wine(Base):
     stock_quantity = Column(Integer)
     year = Column(Integer)
 
-    def __repr__(self):
-        return f"<Wine(name='{self.name}', type='{self.wine_type}')>"
+    def string_representation(self):
+        return " ".join(str(getattr(self, c.name)) for c in self.__table__.columns if getattr(self, c.name) is not None)
