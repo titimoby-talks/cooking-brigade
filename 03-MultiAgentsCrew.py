@@ -50,6 +50,7 @@ create_menu_task = Task(
 find_wine_task = Task(
     description="Trouve un vin dans la base de donnée du restaurant qui accompagne à merveille le menu. Favorise un choix d'un vin issu du résultat du tool query_wines_tool.",
     expected_output="""Une description en 1 phrase du vin trouvé et son terroir.
+        La description doit comporter le nom exact du vin trouvé dans la database.
     """,
     agent=sommelier,
     context=[create_menu_task],
