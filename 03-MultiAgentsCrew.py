@@ -17,6 +17,7 @@ chef = Agent(
     verbose=True,
 )
 
+
 @tool
 def query_wines_tool():
     """Query the wines table from the RestaurantDB."""

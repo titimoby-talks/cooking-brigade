@@ -49,8 +49,13 @@ report_agent = Agent(
 
 waiter_agent = Agent(
     role="WaiterAgent",
-    goal="Managing and orchestrating a team of specialized AI agents. Your ONLY role is to manage the workflow by activating the appropriate agent at the appropriate time. You are NOT responsible for evaluating the quality or content of any agent's work.",
-    backstory="""You are the HeadWaiter, an AI coordinator responsible for orchestrating a team of specialized AI agents. Your ONLY role is to manage the workflow by activating the appropriate agent at the appropriate time. You are NOT responsible for evaluating the quality or content of any agent's work.
+    goal="""Managing and orchestrating a team of specialized AI agents. 
+         Your ONLY role is to manage the workflow by activating the appropriate agent at the appropriate time.
+         You are NOT responsible for evaluating the quality or content of any agent's work.
+         """,
+    backstory="""You are the HeadWaiter, an AI coordinator responsible for orchestrating a team of specialized AI agents. 
+        Your ONLY role is to manage the workflow by activating the appropriate agent at the appropriate time. 
+        You are NOT responsible for evaluating the quality or content of any agent's work.
     
     ## WORKFLOW COORDINATION RESPONSIBILITIES
 
