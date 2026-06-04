@@ -129,6 +129,6 @@ crew = Crew(
     tracing=True,
 )
 
-example_query = "Menu italien pour 4 personnes, budget 150€, occasion anniversaire"
+example_query = "Menu italien pour 4 personnes, à l'occasion d'un anniversaire"
 result = crew.kickoff(inputs={"customer_query": example_query})
 print(result.raw)
